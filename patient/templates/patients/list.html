@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient List</title>
+</head>
+<body>
+
+<h1>Patient List</h1>
+
+<p>
+    <a href="{% url 'add_patient' %}">Add Patient</a>
+</p>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Patient ID</th>
+        <th>Name</th>
+        <th>CNIC</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Blood Group</th>
+        <th>Doctor</th>
+        <th>Status</th>
+    </tr>
+
+    {% for patient in patients %}
+    <tr>
+        <td>{{ patient.patient_id }}</td>
+        <td>{{ patient.patient_name }}</td>
+        <td>{{ patient.cnic }}</td>
+        <td>{{ patient.phone }}</td>
+        <td>{{ patient.email }}</td>
+        <td>{{ patient.gender }}</td>
+        <td>{{ patient.blood_group }}</td>
+        <td>{{ patient.assigned_doctor }}</td>
+        <td>{{ patient.status }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="9">No Patients Found</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -41,4 +42,10 @@ urlpatterns = [
              template_name='accounts/password_reset_complete.html'
          ), 
          name='password_reset_complete'),
+    
+     path('patients/', include('patient.urls')),
+
+     
+
+    
 ]
