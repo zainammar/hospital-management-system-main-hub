@@ -44,3 +44,46 @@ def add_patient(request):
             'form': form
         }
     )
+
+ # Edit
+
+@login_required
+def edit_patient(request, id):
+
+    patient = Patient.objects.get(
+        id=id,
+        user=request.user
+    )
+
+    form = PatientForm(
+        request.POST or None,
+        instance=patient
+    )
+
+    if form.is_valid():
+        form.save()
+        return redirect('patient_list')
+
+    return render(
+        request,
+        'patients/edit.html',
+        {
+            'form': form
+        }
+    )
+
+
+# Delete 
+
+
+@login_required
+def delete_patient(request, id):
+
+    patient = Patient.objects.get(
+        id=id,
+        user=request.user
+    )
+
+    patient.delete()
+
+    return redirect('patient_list')

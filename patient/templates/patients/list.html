@@ -22,6 +22,7 @@
         <th>Blood Group</th>
         <th>Doctor</th>
         <th>Status</th>
+        <th>Actions</th>
     </tr>
 
     {% for patient in patients %}
@@ -36,6 +37,18 @@
         <td>{{ patient.assigned_doctor }}</td>
         <td>{{ patient.fee }}</td>
         <td>{{ patient.status }}</td>
+        <td>
+            <a href="{% url 'edit_patient' patient.id %}">
+                Edit
+            </a>
+        
+            |
+        
+            <a href="{% url 'delete_patient' patient.id %}"
+               onclick="return confirm('Delete Patient?')">
+                Delete
+            </a>
+        </td>
     </tr>
     {% empty %}
     <tr>
