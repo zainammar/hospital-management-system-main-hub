@@ -23,6 +23,7 @@
         <th>Doctor</th>
         <th>Status</th>
         <th>Actions</th>
+        <th>Prescription</th>
     </tr>
 
     {% for patient in patients %}
@@ -37,6 +38,8 @@
         <td>{{ patient.assigned_doctor }}</td>
         <td>{{ patient.fee }}</td>
         <td>{{ patient.status }}</td>
+        <td>{{ patient.prescription }}</td>
+        
         <td>
             <a href="{% url 'edit_patient' patient.id %}">
                 Edit

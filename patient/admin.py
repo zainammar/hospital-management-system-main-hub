@@ -1,3 +1,19 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
 
-# Register your models here.
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('id', 'username', 'email', 'is_staff', 'is_active')
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+
+
+from django.contrib import admin
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+
+admin.site.unregister(User)
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
+    pass
