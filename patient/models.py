@@ -1,7 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.db import models
 
+from django.utils import timezone
+timezone.now().date()
+
+ 
 class Patient(models.Model):
 
     STATUS_CHOICES = (
@@ -63,6 +68,10 @@ class Patient(models.Model):
         choices=STATUS_CHOICES,
         default='Active'
     )
+
+
+    date = models.DateField(auto_now_add=True)
+
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
