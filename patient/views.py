@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
 
 from .models import Patient
 from .forms import PatientForm
@@ -72,6 +73,9 @@ def edit_patient(request, id):
         }
     )
 
+def patient_detail(request, id):
+    patient = get_object_or_404(Patient, id=id)
+    return render(request, 'patients/patient_detail.html', {'patient': patient})
 
 # Delete 
 

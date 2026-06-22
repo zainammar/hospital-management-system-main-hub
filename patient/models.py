@@ -1,12 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from django.db import models
 
-from django.utils import timezone
-timezone.now().date()
-
- 
 class Patient(models.Model):
 
     STATUS_CHOICES = (
@@ -27,13 +22,13 @@ class Patient(models.Model):
         related_name='patients'
     )
 
-    patient_id = models.CharField(max_length=50, unique=True)
+    patient_id = models.CharField(max_length=50, unique=True, blank=True)
     patient_name = models.CharField(max_length=255)
     cnic = models.CharField(max_length=15)
     phone = models.CharField(max_length=20)
     email = models.EmailField(blank=True, null=True)
+
     prescription = models.TextField(blank=True, default="")
-    # Prescription
 
     gender = models.CharField(
         max_length=10,
@@ -56,7 +51,6 @@ class Patient(models.Model):
         null=True
     )
 
-    # Patient Fee
     fee = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -69,9 +63,7 @@ class Patient(models.Model):
         default='Active'
     )
 
-
     date = models.DateField(auto_now_add=True)
-
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

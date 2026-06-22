@@ -47,7 +47,11 @@
                 Edit
             </a>
         
-            |
+          
+                <a href="{% url 'patient_detail' patient.id %}">
+                    View
+                </a>
+         
         
             <a href="{% url 'delete_patient' patient.id %}"
                onclick="return confirm('Delete Patient?')">
