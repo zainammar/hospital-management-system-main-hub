@@ -1,4 +1,8 @@
-<h2>Add Patient</h2>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}"><
+
+h2>Add Patient</h2>
 
 <form method="POST">
     {% csrf_token %}
