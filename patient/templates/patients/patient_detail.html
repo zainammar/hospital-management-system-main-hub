@@ -6,4 +6,8 @@
 <p><b>Phone:</b> {{ patient.phone }}</p>
 <p><b>Gender:</b> {{ patient.gender }}</p>
 <p><b>Date:</b> {{ patient.date }}</p>
-<p>{{ patient.prescription }}</p>
+<p>{{ patient.prescription|linebreaksbr }}</p>
+
+<a href="{% url 'patient_pdf' patient.id %}" class="btn btn-danger">
+    Download PDF
+</a>

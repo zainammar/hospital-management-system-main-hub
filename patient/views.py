@@ -91,3 +91,32 @@ def delete_patient(request, id):
     patient.delete()
 
     return redirect('patient_list')
+
+
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+from django.shortcuts import get_object_or_404
+from .models import Patient
+
+def patient_pdf(request, id):
+    patient = get_object_or_404(Patient, id=id)
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="{patient.patient_id}.pdf"'
+
+    p = canvas.Canvas(response)
+
+    p.drawString(100, 800, "Patient Report")
+    p.drawString(300, 790, f"Date: {patient.date}")
+    p.drawString(100, 780, f"Patient ID: {patient.patient_id}")
+    p.drawString(300, 760, "Name:")
+    p.drawString(300, 740, patient.patient_name)
+    p.drawString(300, 780, f"Phone: {patient.phone}")
+    p.drawString(100, 770, f"Prescription: {patient.prescription}")
+
+# <p><b>Date:</b> {{ patient.date }}</p>
+
+    p.showPage()
+    p.save()
+
+    return response
