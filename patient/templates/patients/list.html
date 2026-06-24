@@ -4,7 +4,15 @@
     <title>Patient List</title>
 </head>
 <body>
-
+    <div class="welcome">
+        <div class="profile-preview">
+            <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-img">
+            <div>
+                <h3>Welcome, {{ user.username }}!</h3>
+                <p>You are successfully logged in.</p>
+            </div>
+        </div>
+    </div>
 <h1>Patient List</h1>
 
 <p>

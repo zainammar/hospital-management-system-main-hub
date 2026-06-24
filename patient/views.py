@@ -108,11 +108,22 @@ def patient_pdf(request, id):
 
     p.drawString(100, 800, "Patient Report")
     p.drawString(300, 790, f"Date: {patient.date}")
-    p.drawString(100, 780, f"Patient ID: {patient.patient_id}")
+    p.drawString(100, 770, f"Patient ID: {patient.patient_id}")
     p.drawString(300, 760, "Name:")
     p.drawString(300, 740, patient.patient_name)
     p.drawString(300, 780, f"Phone: {patient.phone}")
-    p.drawString(100, 770, f"Prescription: {patient.prescription}")
+    y = 500
+    y -= 30
+    
+    p.setFont("Helvetica-Bold", 12)
+    p.drawString(100, y, "Prescription:")
+    
+    y -= 20
+    p.setFont("Helvetica", 12)
+    
+    for line in patient.prescription.splitlines():
+     p.drawString(120, y, line)
+     y -= 20
 
 # <p><b>Date:</b> {{ patient.date }}</p>
 
